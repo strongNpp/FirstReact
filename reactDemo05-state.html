@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>
+    <script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="reactContainer"></div>
+
+
+    <script type="text/babel">
+    //定义文本框是否允许编辑
+        var  TextBoxComponent = React.createClass({
+            //初始化状态
+            getInitialState:function(){
+                return {enable:false}
+            },
+            //点击后改变文本框状态的方法
+            handleClick:function(event){
+                //setState:改变状态重新渲染 
+                // this.state：定义的初始化状态
+                // enable：定义的对像
+                this.setState({enable:!this.state.enable})
+            },
+            render:function(){
+                return (
+                    //jsx语法
+                    <p>
+                        <input type="text" disabled={this.state.enable} />
+                        <button onClick={this.handleClick}>改变textbox状态</button>
+                    </p>
+                )
+            }
+        });
+    //网页dom的渲染
+    //参数一：TextBoxComponent 组建名称
+    //参数2：dom节点
+        ReactDOM.render(<TextBoxComponent/>,document.getElementById("reactContainer"));
+    </script>
+</body>
+
+</html>

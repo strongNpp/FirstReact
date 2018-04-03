@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取真是的dom节点</title>
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>
+    <script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="demo"></div>
+ <script type="text/babel">
+      var  MyForm = React.createClass({
+           //初始化状态
+           //value={this.state.gender} 跟初始化状态进行绑定
+          getInitialState:function(){
+            return{
+                username:'',
+                gender:'man',
+                checked:true
+            }
+           },
+             //name 文本框中哪个发生了变化
+            handleChange:function(name,event){
+                var newState={};
+                newState[name]=name=="checked"?event.target.checked:event.target.value;
+                this.setState(newState);
+                console.log(newState);
+           },
+             render:function(){
+               return (<form onSubmit={this.submitHandler}>
+               <label htmlFor="username">情输入您的姓名：</label>
+               <input type="text" name="username" onChange={this.handleChange.bind(this,"username")} value={this.state.username} id="username" />
+               <br/>
+               <label htmlFor="checkbox">是或否：</label>
+               <input  type="checkbox" value="是否" name="checked" id="checkbox" onChange={this.handleChange.bind(this,"checked")} checked={this.state.checked} />
+               <br/>
+               <label htmlFor="username">请选择</label>
+               <select name="gender" onChange={this.handleChange.bind(this,"gender")} value={this.state.gender}>
+                    <option value="man">帅哥</option>
+                    <option value="woman">美女</option>
+               </select>
+               <br/>
+               <button type="submit">提交</button>
+               </form>
+               )
+           }
+       });
+   //ref渲染之后才能使用
+    ReactDOM.render(
+            <MyForm/>,
+            document.getElementById("demo")
+        )
+</script>
+   
+   
+</body>
+
+</html>

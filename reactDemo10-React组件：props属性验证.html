@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PropTypes</title>
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>
+    <script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="demo"></div>
+ <script type="text/babel">
+    var Mytitle=React.createClass({
+        //默认值设置此时下方渲染dom不用设置title
+        // getDefaultProps:function () { 
+        //     return{title:"Hello jingjing"}
+        //  },
+        propTypes:{
+            //限定title属性
+           //  // 以后任意类型加上 `isRequired` 来使 prop 不可空。
+            title:React.PropTypes.string.isRequired,
+        },
+        render:function () {
+            return(
+                <h2>{this.props.title}</h2>
+            )
+          }
+    });
+    var data="jingjing";
+    ReactDOM.render(<Mytitle title={data}/>,document.getElementById("demo"))
+</script>
+   
+   
+</body>
+
+</html>

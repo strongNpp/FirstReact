@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>
+    <script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="demo"></div>
+ <script type="text/babel">
+    var Hello=React.createClass({
+        //初始化状态
+        getInitialState:function () { 
+            return{
+                opacity:1.0
+            }
+         },
+         //生命周期
+         componentDidMount:function () {
+             setInterval(function () { 
+              var opacity=this.state.opacity;
+              opacity-=.05;
+              if(opacity<0.1){
+                  opacity=1.0;
+              }
+              //改变当前状态
+              this.setState({
+                    opacity: opacity
+                });
+                }.bind(this), 100);
+          },
+
+
+          
+        render:function(){
+              return (
+                  <div style={{opacity:this.state.opacity}}>
+                       <h2>Hello {this.props.name}</h2> 
+                  </div>
+              )
+          }
+    });
+
+    //渲染到dom节点中
+    ReactDOM.render(
+          <Hello name="world"/>,
+          document.getElementById('demo')
+      )
+</script>
+   
+   
+</body>
+
+</html>

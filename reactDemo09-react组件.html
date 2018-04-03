@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this.proprs.children</title>
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>
+    <script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="demo"></div>
+ <script type="text/babel">
+     var NoteList=React.createClass({
+         render:function () { 
+             //()格式化
+             //React.Children.map 对ol下面的孩子遍历
+             //this.props.children的值有三种可能，如果当前组件没有子节点，他就是undfined；
+             //如果有一个子节点，数据类型是object；如果有多个子节点，数据类型就是array
+             return (
+                 <ol>
+            
+                    {React.Children.map(this.props.children,function (child) {
+
+                    return(<li>{child}</li>)
+                      })}
+                 </ol>
+             )
+          }
+     });
+     ReactDOM.render(
+        <NoteList>
+            <span>jingjing</span>
+            <span>静静</span>
+             <span>jingjing</span>
+            <span>静静</span>
+             <span>jingjing</span>
+            <span>静静</span> 
+        </NoteList>, document.getElementById("demo") );
+</script>
+   
+   
+</body>
+
+</html>
